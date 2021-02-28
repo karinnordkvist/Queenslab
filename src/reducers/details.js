@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  numbers: '',
-  name: '',
-  date: ['', ''],
-  cvv: '',
+  numbers: '0000000000000000',
+  name: 'Anna Andersson',
+  date: ['01', '21'],
+  cvv: '000',
   cvvDisplay: false,
 };
 

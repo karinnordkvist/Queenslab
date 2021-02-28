@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
-import { details } from '../reducers/details';
 
 export const Card = () => {
   const number = useSelector((store) => store.details.numbers);
@@ -14,6 +13,7 @@ export const Card = () => {
 
   return (
     <CardWrapper cvv={cvvStatus}>
+      {/* Card Number */}
       <Number cvv={cvvStatus}>
         <span>{formattedNumber.filter((number, index) => index < 4)}</span>
         <span style={{ marginLeft: '10px' }}>
@@ -26,19 +26,29 @@ export const Card = () => {
           {formattedNumber.filter((number, index) => index > 11 && index < 17)}
         </span>
       </Number>
+
+      {/* CVV-number */}
       <CvvWrapper cvv={cvvStatus}>
         <MiniHeader>CVV</MiniHeader>
         <p>{cvv}</p>
       </CvvWrapper>
+
       <CardInnerWrapper>
-        <MiniHeader cvv={cvvStatus}>Cardholder</MiniHeader>
-        <MiniHeader cvv={cvvStatus}>Expires</MiniHeader>
-      </CardInnerWrapper>
-      <CardInnerWrapper>
-        <NameDate cvv={cvvStatus}>{name}</NameDate>
-        <NameDate cvv={cvvStatus}>
-          {month}/{year}
-        </NameDate>
+        {/* Name */}
+        <CardInnerWrapper style={{ flexDirection: 'column' }}>
+          <MiniHeader cvv={cvvStatus}>Cardholder</MiniHeader>
+          <NameDate cvv={cvvStatus}>{name}</NameDate>
+        </CardInnerWrapper>
+
+        {/* Expiration Date */}
+        <CardInnerWrapper
+          style={{ flexDirection: 'column', alignItems: 'flex-end' }}
+        >
+          <MiniHeader cvv={cvvStatus}>Expires</MiniHeader>
+          <NameDate cvv={cvvStatus}>
+            {month}/{year}
+          </NameDate>
+        </CardInnerWrapper>
       </CardInnerWrapper>
     </CardWrapper>
   );
@@ -87,7 +97,7 @@ const CardWrapper = styled.div`
   font-weight: 600;
   font-size: 24px;
   text-transform: uppercase;
-  transform: translateY(150px)
+  transform: translateY(100px)
     ${(props) => (props.cvv ? 'rotateY(180deg)' : '')};
   z-index: 50000;
   background-color: #8ec5fc;
@@ -96,15 +106,15 @@ const CardWrapper = styled.div`
   transition: all 0.5s ease-in-out;
 
   ${CvvWrapper} {
-    display: ${(props) => (props.cvv ? 'block' : 'none')};
     opacity: ${(props) => (props.cvv ? '1' : '0')};
+    display: ${(props) => (props.cvv ? 'block' : 'none')};
   }
 `;
 
 const CardInnerWrapper = styled.div`
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
 `;
 

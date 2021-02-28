@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { details } from '../reducers/details';
+
+import { months, years } from './assets';
 
 export const Form = () => {
   const dispatch = useDispatch();
@@ -10,7 +12,23 @@ export const Form = () => {
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
   const [cvv, setCvv] = useState('');
+  const [disabled, setDisabled] = useState(true);
 
+  // Validators
+  // - Decided to make them myself to make sure all were correct
+  useEffect(() => {
+    if (number !== '' && number.length === 16) {
+      if (name !== '' && name.length > 5) {
+        if (month !== '' && year !== '') {
+          if (cvv !== '' && cvv.length === 3) {
+            return setDisabled(false);
+          }
+        }
+      }
+    }
+  }, [number, name, cvv, month, year]);
+
+  // Form handlers --------------------------------
   const onNumberChangeHandler = (value) => {
     setNumber(value);
     return dispatch(details.actions.setNumbers(value));
@@ -41,47 +59,32 @@ export const Form = () => {
   };
 
   const handleSubmit = (event) => {
-    // event.preventDefault();
+    event.preventDefault();
     console.log('Submitted!');
   };
-
-  const months = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-  ];
-  const years = [21, 22, 23, 24, 25];
+  // ----------------------------------------------
 
   return (
     <FormWrapper>
       <form>
-        <label>Card Number</label>
+        <label htmlFor="number">Card Number</label>
         <TextInput
+          id="number"
           type="text"
           value={number}
           onChange={(event) => onNumberChangeHandler(event.target.value)}
-          minlength="16"
-          maxlength="16"
+          maxLength="16"
           placeholder="0000 0000 0000 0000"
           number={number.length}
         />
 
-        <label>Card Name</label>
+        <label htmlFor="name">Card Name</label>
         <NameInput
+          id="name"
           type="text"
           value={name}
           onChange={(event) => onNameChangeHandler(event.target.value)}
           placeholder="Anna Andersson"
-          minLength="5"
           maxLength="28"
           name={name.length}
         />
@@ -117,8 +120,9 @@ export const Form = () => {
             </FormInnerWrapper>
           </FormInnerWrapper>
           <FormInnerWrapper style={{ flexDirection: 'column', width: '30%' }}>
-            <label>CVV</label>
+            <label htmlFor="cvv">CVV</label>
             <CvvInput
+              id="cvv"
               type="text"
               maxLength="3"
               onFocus={() => changeCvvStatus(true)}
@@ -128,7 +132,11 @@ export const Form = () => {
             />
           </FormInnerWrapper>
         </FormInnerWrapper>
-        <SubmitButton onClick={(event) => handleSubmit(event)}>
+        <SubmitButton
+          onClick={(event) => handleSubmit(event)}
+          type="submit"
+          disabled={disabled}
+        >
           Submit
         </SubmitButton>
       </form>
@@ -139,7 +147,6 @@ export const Form = () => {
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 50px 0 100px;
   background: #fff;
   padding: 150px 100px 80px;
 
@@ -202,14 +209,15 @@ const SubmitButton = styled.button`
   padding: 10px 8px;
   font-size: 18px;
   margin-top: 20px;
-  cursor: pointer;
-  background: #000;
-  color: #fff;
+  cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
+  background: ${(props) => (props.disabled ? '#F8F0FF' : '#8EC5FC')};
+  background-image: ${(props) =>
+    props.disabled ? '' : 'linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%)'};
+  color: ${(props) => (props.disabled ? '#000' : '#fff')};
   border: none;
   border-radius: 5px;
 
   &:hover {
-    background: #e0c3fc;
-    cursor: pointer;
+    background: ${(props) => (props.disabled ? '' : '#e0c3fc')};
   }
 `;
