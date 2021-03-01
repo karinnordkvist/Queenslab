@@ -124,6 +124,7 @@ const CardWrapper = styled.div`
   @media (max-width: 800px) {
     width: 70vw;
     height: calc(70vw / 1.586);
+    transform: translateY(40px);
   }
 
   ${CvvWrapper} {
@@ -147,6 +148,7 @@ const Number = styled.p`
 
   @media (max-width: 800px) {
     font-size: 20px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -157,6 +159,6 @@ const NameDate = styled.p`
   display: ${(props) => (props.cvv ? 'none' : 'block')};
 
   @media (max-width: 800px) {
-    font-size: 20px;
+    font-size: 16px;
   }
 `;

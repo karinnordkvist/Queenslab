@@ -174,6 +174,10 @@ const FormWrapper = styled.div`
   background: #fff;
   padding: 150px 100px 80px;
 
+  @media (max-width: 800px) {
+    padding: 20vw 10vw;
+  }
+
   form {
     display: flex;
     flex-direction: column;
@@ -188,7 +192,8 @@ const FormWrapper = styled.div`
   }
 
   select {
-    padding: 9px 5px;
+    background: none;
+    padding: 8px 5px;
     border: 1px solid #000;
     margin-top: 5px;
     font-size: 18px;
@@ -197,6 +202,10 @@ const FormWrapper = styled.div`
     &:hover {
       border-color: #e0c3fc;
       cursor: pointer;
+    }
+
+    @media (max-width: 800px) {
+      font-size: 16px;
     }
   }
 `;
@@ -218,6 +227,10 @@ const TextInput = styled.input`
 
   &:hover {
     border-color: #e0c3fc;
+  }
+
+  @media (max-width: 800px) {
+    font-size: 16px;
   }
 `;
 

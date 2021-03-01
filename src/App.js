@@ -32,4 +32,8 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   transform: translateY(-50px);
+
+  @media (max-width: 800px) {
+    transform: translateY(-25px);
+  }
 `;
