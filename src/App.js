@@ -34,6 +34,6 @@ const Wrapper = styled.div`
   transform: translateY(-50px);
 
   @media (max-width: 800px) {
-    transform: translateY(-25px);
+    transform: translateY(0);
   }
 `;
