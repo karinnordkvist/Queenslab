@@ -13,6 +13,7 @@ export const Card = () => {
 
   return (
     <CardWrapper cvv={cvvStatus}>
+      <Chip src={process.env.PUBLIC_URL + '/chip.png'} />
       {/* Card Number */}
       <Number cvv={cvvStatus}>
         <span>{formattedNumber.filter((number, index) => index < 4)}</span>
@@ -53,6 +54,10 @@ export const Card = () => {
     </CardWrapper>
   );
 };
+
+const Chip = styled.img`
+  width: 50px;
+`;
 
 const MiniHeader = styled.p`
   font-family: 'Helvetica';
