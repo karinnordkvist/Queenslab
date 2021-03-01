@@ -124,7 +124,8 @@ const CardWrapper = styled.div`
   @media (max-width: 800px) {
     width: 70vw;
     height: calc(70vw / 1.586);
-    transform: translateY(40px);
+    transform: translateY(40px)
+      ${(props) => (props.cvv ? 'rotateY(180deg)' : '')};
   }
 
   ${CvvWrapper} {
