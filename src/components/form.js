@@ -204,7 +204,7 @@ const TextInput = styled.input`
   padding: 10px 8px 6px;
   border: ${(props) =>
     props.number < 16 && props.number > 0
-      ? '3px dotted red'
+      ? '1px dotted red'
       : '1px solid #000'};
   background: none;
   margin: 5px 0 20px;
@@ -218,12 +218,12 @@ const TextInput = styled.input`
 
 const NameInput = styled(TextInput)`
   border: ${(props) =>
-    props.name < 3 && props.name > 0 ? '3px dotted red' : '1px solid #000'};
+    props.name < 3 && props.name > 0 ? '1px dotted red' : '1px solid #000'};
 `;
 
 const CvvInput = styled(TextInput)`
   border: ${(props) =>
-    props.cvv < 3 && props.cvv > 0 ? '3px dotted red' : '1px solid #000'};
+    props.cvv < 3 && props.cvv > 0 ? '1px dotted red' : '1px solid #000'};
 `;
 
 const SubmitButton = styled.button`
