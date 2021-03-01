@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useDispatch } from 'react-redux';
 import { details } from '../reducers/details';
 
@@ -60,7 +60,18 @@ export const Form = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Submitted!');
+    console.log({
+      CardNumber: number,
+      CardName: name,
+      CardExpiration: `${month}/${year}`,
+      Cvv: cvv,
+    });
+    setNumber('');
+    setName('');
+    setMonth('');
+    setYear('');
+    setCvv('');
+    setDisabled(true);
   };
   // ----------------------------------------------
 
@@ -159,6 +170,7 @@ const FormWrapper = styled.div`
   label {
     text-transform: uppercase;
     font-size: 11px;
+    letter-spacing: 1px;
   }
 
   select {
@@ -206,9 +218,12 @@ const CvvInput = styled(TextInput)`
 `;
 
 const SubmitButton = styled.button`
-  padding: 10px 8px;
+  padding: 14px 8px;
   font-size: 18px;
   margin-top: 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
   cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
   background: ${(props) => (props.disabled ? '#F8F0FF' : '#8EC5FC')};
   background-image: ${(props) =>

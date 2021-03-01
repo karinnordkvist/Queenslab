@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useSelector } from 'react-redux';
 
 export const Card = () => {
@@ -58,6 +58,7 @@ const MiniHeader = styled.p`
   font-family: 'Helvetica';
   font-weight: 400;
   font-size: 10px;
+  letter-spacing: 1px;
   margin: 0;
   display: ${(props) => (props.cvv ? 'none' : 'block')};
 `;
