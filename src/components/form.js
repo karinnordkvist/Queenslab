@@ -72,6 +72,11 @@ export const Form = () => {
     setYear('');
     setCvv('');
     setDisabled(true);
+    dispatch(details.actions.setNumbers('0000000000000000'));
+    dispatch(details.actions.setName('Anna Andersson'));
+    dispatch(details.actions.setMonth('01'));
+    dispatch(details.actions.setYear('21'));
+    dispatch(details.actions.setCvv('000'));
   };
   // ----------------------------------------------
 
