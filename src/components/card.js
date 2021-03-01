@@ -13,7 +13,9 @@ export const Card = () => {
 
   return (
     <CardWrapper cvv={cvvStatus}>
-      <Chip src={process.env.PUBLIC_URL + '/chip.png'} />
+      {/* Chip Image */}
+      <Chip cvv={cvvStatus} src={process.env.PUBLIC_URL + '/chip.png'} />
+
       {/* Card Number */}
       <Number cvv={cvvStatus}>
         <span>{formattedNumber.filter((number, index) => index < 4)}</span>
@@ -55,8 +57,14 @@ export const Card = () => {
   );
 };
 
+// Styling ---
 const Chip = styled.img`
   width: 50px;
+  display: ${(props) => (props.cvv ? 'none' : 'block')};
+
+  @media (max-width: 800px) {
+    width: 40px;
+  }
 `;
 
 const MiniHeader = styled.p`
@@ -90,26 +98,33 @@ const CvvWrapper = styled.div`
 `;
 
 const CardWrapper = styled.div`
+  width: 40vw;
+  max-width: 400px;
+  max-height: calc(400px / 1.586);
+  height: calc(40vw / 1.586);
+  padding: 30px;
+  border-radius: 30px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
-  width: 400px;
-  height: 250px;
-  border-radius: 30px;
-  box-shadow: 2px 10px 15px rgba(237, 232, 249, 1);
-  padding: 30px;
   font-family: 'Inconsolata';
   font-weight: 600;
   font-size: 24px;
   text-transform: uppercase;
   transform: translateY(100px)
     ${(props) => (props.cvv ? 'rotateY(180deg)' : '')};
-  z-index: 50000;
   background-color: #8ec5fc;
   background-image: linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%);
   color: #fff;
+  box-shadow: 2px 10px 15px rgba(237, 232, 249, 1);
+  z-index: 1;
   transition: all 0.5s ease-in-out;
+
+  @media (max-width: 800px) {
+    width: 70vw;
+    height: calc(70vw / 1.586);
+  }
 
   ${CvvWrapper} {
     opacity: ${(props) => (props.cvv ? '1' : '0')};
@@ -129,6 +144,10 @@ const Number = styled.p`
   text-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.3);
   transition: display 0.5s ease-in-out;
   display: ${(props) => (props.cvv ? 'none' : 'block')};
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
 `;
 
 const NameDate = styled.p`
@@ -136,4 +155,8 @@ const NameDate = styled.p`
   font-size: 22px;
   text-shadow: 1px 1px 1.5px rgba(0, 0, 0, 0.3);
   display: ${(props) => (props.cvv ? 'none' : 'block')};
+
+  @media (max-width: 800px) {
+    font-size: 20px;
+  }
 `;

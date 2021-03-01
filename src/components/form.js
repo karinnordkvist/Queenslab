@@ -78,6 +78,7 @@ export const Form = () => {
   return (
     <FormWrapper>
       <form>
+        {/* Number */}
         <label htmlFor="number">Card Number</label>
         <TextInput
           id="number"
@@ -89,6 +90,7 @@ export const Form = () => {
           number={number.length}
         />
 
+        {/* Name */}
         <label htmlFor="name">Card Name</label>
         <NameInput
           id="name"
@@ -100,6 +102,7 @@ export const Form = () => {
           name={name.length}
         />
 
+        {/* Expiration date */}
         <FormInnerWrapper style={{ flexDirection: 'row' }}>
           <FormInnerWrapper style={{ flexDirection: 'column', width: '70%' }}>
             <label>Expiration Date</label>
@@ -130,6 +133,8 @@ export const Form = () => {
               </select>
             </FormInnerWrapper>
           </FormInnerWrapper>
+
+          {/* CVV */}
           <FormInnerWrapper style={{ flexDirection: 'column', width: '30%' }}>
             <label htmlFor="cvv">CVV</label>
             <CvvInput
@@ -143,6 +148,8 @@ export const Form = () => {
             />
           </FormInnerWrapper>
         </FormInnerWrapper>
+
+        {/* Submit button */}
         <SubmitButton
           onClick={(event) => handleSubmit(event)}
           type="submit"
@@ -155,6 +162,7 @@ export const Form = () => {
   );
 };
 
+// Styling ---
 const FormWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -164,7 +172,8 @@ const FormWrapper = styled.div`
   form {
     display: flex;
     flex-direction: column;
-    width: 460px;
+    max-width: 460px;
+    width: 80vw;
   }
 
   label {
